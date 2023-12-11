@@ -114,7 +114,6 @@ func (gr *Schematics) SolvePt2() int {
 		curr := thePipe[i]
 		prev := thePipe[i-1]
 		tile := gr.loc[curr.row][curr.col]
-		// use direction on two corners to compensate for S being a replacement of a corner
 		dir := direction(curr, prev, tile)
 		if tile == '7' || tile == 'F' {
 			if dir == West {

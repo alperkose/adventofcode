@@ -30,6 +30,14 @@ func (ob *Observation) Accept(inp string) {
 }
 
 func (ob *Observation) SolvePt1() int {
+	return ob.sumOfDistances(2)
+}
+
+func (ob *Observation) SolvePt2() int {
+	return ob.sumOfDistances(1000000)
+}
+
+func (ob *Observation) sumOfDistances(warpFactor int) int {
 	runningSum := 0
 	emptyCol := make([]bool, len(ob.image[0]))
 	emptyRow := make([]bool, len(ob.image))
@@ -51,12 +59,12 @@ func (ob *Observation) SolvePt1() int {
 	deltaRow, deltaCol := 0, 0
 	for i := 0; i < len(ob.image); i++ {
 		if emptyRow[i] {
-			deltaRow += 999999
+			deltaRow += warpFactor - 1
 		}
 		deltaCol = 0
 		for j := 0; j < len(ob.image[0]); j++ {
 			if emptyCol[j] {
-				deltaCol += 999999
+				deltaCol += warpFactor - 1
 			}
 
 			if ob.image[i][j] == '#' {
@@ -70,12 +78,6 @@ func (ob *Observation) SolvePt1() int {
 			runningSum += int(math.Abs(float64(galaxies[i].col-galaxies[j].col)) + math.Abs(float64(galaxies[i].row-galaxies[j].row)))
 		}
 	}
-
-	return runningSum
-}
-
-func (ob *Observation) SolvePt2() int {
-	runningSum := 0
 
 	return runningSum
 }
